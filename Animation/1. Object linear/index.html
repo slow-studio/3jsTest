@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>07. gltf material expo</title>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+	<body>
+
+		<!-- <div id="info"><a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> - convex geometry</div> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+		<script type="module">
+
+			import * as THREE from './build/three.module.js';
+			
+			import { OrbitControls } from './js/OrbitControls.js';
+			// import { ConvexGeometry } from './js/ConvexGeometry.js';
+			// import { BufferGeometryUtils } from './js/BufferGeometryUtils.js';
+			import { GLTFLoader } from './js/GLTFLoader.js';
+			import { DRACOLoader } from './js/DRACOLoader.js';
+
+			let group, camera, scene, renderer, mesh, loader, model, time, cars;
+			let gridHelper, material, sphere;
+
+			init();
+			animate();
+
+
+			function init() {
+
+				scene = new THREE.Scene();
+				
+				//renderer
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
+				renderer.toneMappingExposure = 1;
+				renderer.outputEncoding = THREE.sRGBEncoding;
+				document.body.appendChild( renderer.domElement );
+
+
+				// camera
+
+				camera = new THREE.PerspectiveCamera( 20, window.innerWidth / window.innerHeight, 1, 100 );
+				camera.position.set( 3, 18, -7 );
+				scene.add( camera );
+
+
+				// controls
+
+				const controls = new OrbitControls( camera, renderer.domElement );
+				controls.minDistance = 10;
+				controls.maxDistance = 50;
+				controls.maxPolarAngle = Math.PI / 2;
+				controls.update();
+
+				// ambient light
+
+				// scene.add( new THREE.AmbientLight( 0x222222 ) );
+
+				// point light
+
+				const light = new THREE.PointLight( 0xffffff, 1 );
+				camera.add( light );
+
+				const directionalLight = new THREE.DirectionalLight( 0xF2AC7E );
+				directionalLight.position.set( 0, 200, -10 );
+				directionalLight.castShadow = true;
+				directionalLight.shadow.camera.top = 180;
+				directionalLight.shadow.camera.bottom = - 100;
+				directionalLight.shadow.camera.left = - 120;
+				directionalLight.shadow.camera.right = 120;
+				scene.add( directionalLight );
+
+				//grid plane
+				gridHelper = new THREE.GridHelper( 50, 20, 0x888888, 0x444444 );
+				gridHelper.position.y = - 1;
+				gridHelper.name = "Grid";
+				scene.add( gridHelper );
+
+
+				
+				// //#10 Gltf loader
+					var loader = new GLTFLoader();
+
+					loader.load( './assets/210428 demographics.glb', function ( huh ) {	
+
+					// scene.add( gltf.scene );
+
+					model = huh.scene;
+					model.position.set( 1, 0, 0 );
+					model.scale.set( 1, 1, 1 );
+
+					var newMaterial = new THREE.MeshLambertMaterial({color: 0xff0047, wireframe: true});
+						model.traverse((o) => {
+						if (o.isMesh) o.material = newMaterial;
+						});
+					
+					scene.add( model );
+
+					}, undefined, function ( error ) {
+
+					console.error( error );
+
+					} );
+
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+		
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+				
+				render();
+
+			}
+
+			function render() {
+		
+				requestAnimationFrame( render );
+				 
+				model.position.x += -0.005;
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+
+			<script src="./main.js"></script>
+
+	</body>
+</html>

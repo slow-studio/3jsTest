@@ -3,7 +3,7 @@
 	<head>
 		<title>three.js webgl - animation - keyframes</title>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link type="text/css" rel="stylesheet" href="./sty.css">
 		<style>
 			body {
@@ -14,42 +14,83 @@
 			a {
 				color: #2983ff;
 			}
+			
+			* {
+			box-sizing: border-box;
+			}
+
+			/* Create two equal columns that floats next to each other */
+			.column {
+			float: left;
+			width: 50%;
+			padding: 10px;
+			height: 100%; /* Should be removed. Only for demonstration */
+			}
+
+			/* Clear floats after the columns */
+			.row:after {
+			content: "";
+			display: table;
+			clear: both;
+			}
+			
+			
 		</style>
 	</head>
 
 	<body>
+		<h1>Experiments Archive</h1>
+		<div class="row"></div>
+			<div class="column" style="background-color:#e5f1ef;"> 
 
-		<div id="container"></div>
-        <h1>Experiments Archive</h1>
+				<div id="container"></div>
+						
 
-        <a href="./01. object with camera and lighting/Index.html">01. object with camera and light</a>
-        <br>
-        <a href="./02. data sculpture with camera and lighting and material/Index.html">02. data sculpture in an environment</a>
-        <br>
-        <a href="./03. add skybox, change light and material/Index.html">03. skybox with lighting</a>
-        <br>
-        <a href="./04. playing animation/index.html">04. playing a gltf with animation material and tranperancy</a>
-        <br>
-	<br>
-	<p>5th Lighting and Materials</p>
-        <br>
-	<a href="./05. Lighting/index.html">05. Experimenting with different types of lighting</a>
-        <br>
-	<a href="./06. materials + gltf/index.html">06. Experimenting with material types</a>
-        <br>
-	<a href="./07. gltf material expo/index.html">07. gltf material expo</a>
-        <br>
-	<p>Button</p>
-        <br>
-	<p style="color:green;">Basic Button that returns a messege when clicked</p>
-	<a href="./8. A simple button">07. A simple button</a>
-        <br>
-	<p style="color:green;">A button thats controls a visual element of the file. In this case the background</p>
-	<a href="./9. A simple button with some style control">9. A simple button with some style control</a>
-        <br>
-	<p style="color:green;">A button that functions in the Three js file, although it looks like it stands outside the space.</p>
-	<a href="./10. buttong in the gltf folder">10. button in the gltf folder</a>
-        <br>
+					<a href="./01. object with camera and lighting/Index.html">01. object with camera and light</a>
+					<br>
+					<a href="./02. data sculpture with camera and lighting and material/Index.html">02. data sculpture in an environment</a>
+					<br>
+					<a href="./03. add skybox, change light and material/Index.html">03. skybox with lighting</a>
+					<br>
+					<a href="./04. playing animation/index.html">04. playing a gltf with animation material and tranperancy</a>
+					<br>
+					<br>
+						<p>5th Lighting and Materials</p>
+					<br>
+					<a href="./05. Lighting/index.html">05. Experimenting with different types of lighting</a>
+						<br>
+					<a href="./06. materials + gltf/index.html">06. Experimenting with material types</a>
+						<br>
+					<a href="./07. gltf material expo/index.html">07. gltf material expo</a>
+					<br>
+						<p>Button</p>
+					<br>
+					<p style="color:green;">Basic Button that returns a messege when clicked</p>
+					<a href="./8. A simple button">07. A simple button</a>
+						<br>
+					<p style="color:green;">A button thats controls a visual element of the file. In this case the background</p>
+					<a href="./9. A simple button with some style control">9. A simple button with some style control</a>
+						<br>
+					<p style="color:green;">A button that functions in the Three js file, although it looks like it stands outside the space.</p>
+					<a href="./10. buttong in the gltf folder">10. button in the gltf folder</a>
+						<br>
+			</div>
+
+			<div class="column" style="background-color:#eae5f1;">
+				<h3>Animations</h3>
+					<br>
+					<p style="color:8268f7;">linear movement</p>
+					<a href="./Animation/1. Object linear/">01. Object linear</a>
+						<br>
+					<p style="color:8268f7;">cyclic movement </p>
+					<a href="./Animation/2. object rotates/">o2. object rotates</a>
+						<br>
+					<p style="color:g8268f7;">change other parameters: Sacle</p>
+					<a href="./Animation/3. object scales/">03. object scales</a>
+						<br>
+			</div>
+
+		</div>
 
 	</body>
 
